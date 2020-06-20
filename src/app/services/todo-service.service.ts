@@ -1,9 +1,20 @@
 import { Injectable } from '@angular/core';
+import { Todo } from '../classes/todo';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class TodoServiceService {
+export class TodoService {
+  lastId = 0;
+  todos: Todo[] = [];
 
-  constructor() { }
+  constructor() {}
+
+  addTodo(todo: Todo): TodoService {
+    if (!todo.id) {
+      todo.id = ++this.lastId;
+    }
+    this.todos.push(todo);
+    return this;
+  }
 }
