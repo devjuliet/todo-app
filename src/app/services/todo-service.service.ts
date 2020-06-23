@@ -17,4 +17,14 @@ export class TodoService {
     this.todos.push(todo);
     return this;
   }
+
+  deleteTodo() {}
+
+  editTodo() {}
+
+  getTodo() {}
+
+  getAllTodos(): Todo[] {
+    return this.todos;
+  }
 }
