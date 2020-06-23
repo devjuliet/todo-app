@@ -1,15 +1,25 @@
 import { Component, OnInit } from '@angular/core';
+import { TodoService } from '../../services/todo-service.service';
+import { Todo } from 'src/app/classes/todo';
 
 @Component({
   selector: 'app-todo-form',
   templateUrl: './todo-form.component.html',
-  styleUrls: ['./todo-form.component.css']
+  styleUrls: ['./todo-form.component.css'],
 })
 export class TodoFormComponent implements OnInit {
+  query = '';
 
-  constructor() { }
+  constructor(private service: TodoService) {}
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  addTodo() {
+    this.service.addTodo({
+      task: this.query,
+      complete: false,
+      id: 0,
+    });
+    this.query = '';
   }
-
 }

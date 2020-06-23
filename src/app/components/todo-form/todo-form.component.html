@@ -9,6 +9,9 @@
       aria-label="Add a task"
       placeholder="Add a task"
       aria-describedby="inputGroup-sizing-sm"
+      [(ngModel)]="query"
+      name="query"
+      (keyup.enter)="addTodo()"
     />
   </div>
 </header>
