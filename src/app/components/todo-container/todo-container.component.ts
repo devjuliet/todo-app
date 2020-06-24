@@ -13,11 +13,15 @@ export class TodoContainerComponent implements OnInit {
   constructor(private service: TodoService) {}
 
   ngOnInit(): void {
-    this.getTodos();
+    this.onGetTodos();
   }
 
-  getTodos() {
+  onGetTodos() {
     const data = this.service.getAllTodos();
     this.todos = data;
+  }
+
+  onDeleteTodo(id: number) {
+    this.service.deleteTodo(id);
   }
 }

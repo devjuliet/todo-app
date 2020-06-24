@@ -1,4 +1,18 @@
 <li class="list-group-item">
-  <input type="checkbox" aria-label="Checkbox for following text input" />
-  {{ todo.task }}
+  <div class="d-flex flex-nowrap bd-highlight">
+    <div class="p-2 bd-highlight">
+      <input type="checkbox" aria-label="checkbox" />
+      {{ todo.task }}
+    </div>
+
+    <div class="ml-auto p-2 bd-highlight">
+      <button
+        type="button"
+        class="btn btn-sm btn-danger"
+        (click)="onDeleteTodo()"
+      >
+        X
+      </button>
+    </div>
+  </div>
 </li>

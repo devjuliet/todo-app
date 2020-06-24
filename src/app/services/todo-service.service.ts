@@ -18,11 +18,11 @@ export class TodoService {
     return this;
   }
 
-  deleteTodo() {}
-
-  editTodo() {}
-
-  getTodo() {}
+  deleteTodo(id: number): TodoService {
+    this.todos = this.todos.filter((todo) => todo.id !== id);
+    console.log(this.todos);
+    return this;
+  }
 
   getAllTodos(): Todo[] {
     return this.todos;
