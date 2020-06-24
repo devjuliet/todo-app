@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 import { Todo } from 'src/app/classes/todo';
 import { TodoService } from 'src/app/services/todo-service.service';
 
@@ -21,7 +21,7 @@ export class TodoContainerComponent implements OnInit {
     this.todos = data;
   }
 
-  onDeleteTodo(id: number) {
+  removeTodo(id: number) {
     this.service.deleteTodo(id);
   }
 }

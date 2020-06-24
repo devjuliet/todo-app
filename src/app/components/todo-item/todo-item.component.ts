@@ -8,7 +8,7 @@ import { Todo } from 'src/app/classes/todo';
 })
 export class TodoItemComponent implements OnInit {
   @Input() todo: Todo;
-  @Output() onDelete = new EventEmitter<number>();
+  @Output() delete = new EventEmitter<number>();
   complete = false;
 
   constructor() {}
@@ -16,6 +16,6 @@ export class TodoItemComponent implements OnInit {
   ngOnInit(): void {}
 
   onDeleteTodo() {
-    this.onDelete.emit(this.todo.id);
+    this.delete.emit(this.todo.id);
   }
 }
