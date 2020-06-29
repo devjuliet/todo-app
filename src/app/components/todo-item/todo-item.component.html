@@ -1,8 +1,10 @@
 <li class="list-group-item">
   <div class="d-flex flex-nowrap bd-highlight">
     <div class="p-2 bd-highlight">
-      <input type="checkbox" aria-label="checkbox" />
-      {{ todo.task }}
+      <input type="checkbox" [(ngModel)]="complete" aria-label="checkbox" />
+      <span class="format-text" [ngClass]="{ crossed: complete }">{{
+        todo.task
+      }}</span>
     </div>
 
     <div class="ml-auto p-2 bd-highlight">
