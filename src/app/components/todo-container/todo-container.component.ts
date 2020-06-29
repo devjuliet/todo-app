@@ -17,8 +17,9 @@ export class TodoContainerComponent implements OnInit {
   }
 
   onGetTodos() {
-    const data = this.service.getAllTodos();
-    this.todos = data;
+    this.service.getAllTodos().subscribe((todos) => {
+      this.todos = todos;
+    });
   }
 
   removeTodo(id: number) {

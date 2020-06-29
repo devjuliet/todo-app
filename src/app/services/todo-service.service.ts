@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Todo } from '../classes/todo';
+import { Subject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TodoService {
   lastId = 0;
-  todos: Todo[] = [];
+  private todos: Todo[] = [];
+  private todos$ = new Subject<Todo[]>();
 
   constructor() {}
 
@@ -15,16 +17,19 @@ export class TodoService {
       todo.id = ++this.lastId;
     }
     this.todos.push(todo);
+    this.todos$.next(this.todos);
+
     return this;
   }
 
   deleteTodo(id: number): TodoService {
     this.todos = this.todos.filter((todo) => todo.id !== id);
-    console.log(this.todos);
+    this.todos$.next(this.todos);
+
     return this;
   }
 
-  getAllTodos(): Todo[] {
-    return this.todos;
+  getAllTodos(): Observable<Todo[]> {
+    return this.todos$.asObservable();
   }
 }
