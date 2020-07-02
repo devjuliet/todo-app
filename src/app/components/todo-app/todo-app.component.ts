@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from '../../models/user';
+import { AuthenticationService } from 'src/app/services/authentication.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-todo-app',
@@ -8,7 +11,10 @@ import { Component, OnInit } from '@angular/core';
 export class TodoAppComponent implements OnInit {
   title = 'Tasks';
 
-  constructor() {}
+  currentUser: User;
 
-  ngOnInit(): void {}
+  constructor(private authenticationService: AuthenticationService) {
+    this.currentUser = this.authenticationService.currentUserValue;
+  }
+  ngOnInit() {}
 }
