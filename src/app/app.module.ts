@@ -9,6 +9,7 @@ import { TodoContainerComponent } from './components/todo-container/todo-contain
 import { TodoFormComponent } from './components/todo-form/todo-form.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
+import { TodoAppComponent } from './components/todo-app/todo-app.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { LoginComponent } from './components/login/login.component';
     TodoFormComponent,
     RegisterComponent,
     LoginComponent,
+    TodoAppComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule],
   providers: [],

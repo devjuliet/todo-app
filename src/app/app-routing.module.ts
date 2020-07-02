@@ -1,11 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { TodoAppComponent } from './components/todo-app/todo-app.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
 
+const routes: Routes = [
+  { path: '', component: TodoAppComponent, canActivate: [] },
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
 
-const routes: Routes = [];
+  // otherwise redirect to home
+  { path: '**', redirectTo: '' },
+];
 
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
-})
-export class AppRoutingModule { }
+export const appRoutingModule = RouterModule.forRoot(routes);
