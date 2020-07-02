@@ -26,7 +26,7 @@ export class RegisterComponent implements OnInit {
     // redirige a "home" si ya está loggeado
     if (this.authenticationService.currentUserValue) {
       this.router.navigate(['/']);
-  }
+    }
   }
 
   ngOnInit() {
@@ -52,16 +52,18 @@ export class RegisterComponent implements OnInit {
     }
 
     this.loading = true;
-    this.userService.register(this.registerForm.value).pipe(first()).subscribe(
-      data=>{
-        this.alertService.success('Register successful', true);
-        this.router.navigate(['/login']);
-      },
-      error=>{
-        this.alertService.error(error);
-        this.loading = false;
-      }
-    )
-    }
+    this.userService
+      .register(this.registerForm.value)
+      .pipe(first())
+      .subscribe(
+        (data) => {
+          this.alertService.success('Register successful', true);
+          this.router.navigate(['/login']);
+        },
+        (error) => {
+          this.alertService.error(error);
+          this.loading = false;
+        }
+      );
   }
 }
