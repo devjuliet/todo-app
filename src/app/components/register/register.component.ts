@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
+import { AuthenticationService } from 'src/app/services/authentication.service';
+import { UserService } from 'src/app/services/user.service';
+import { AlertService } from 'src/app/services/alert.service';
 
 @Component({
   selector: 'app-register',
@@ -13,7 +16,18 @@ export class RegisterComponent implements OnInit {
   loading = false;
   submitted = false;
 
-  constructor(private formBuilder: FormBuilder, private router: Router) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private authenticationService: AuthenticationService,
+    private userService: UserService,
+    private alertService: AlertService
+  ) {
+    // redirige a "home" si ya está loggeado
+    if (this.authenticationService.currentUserValue) {
+      this.router.navigate(['/']);
+  }
+  }
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
@@ -24,7 +38,7 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  // convenience getter for easy access to form fields
+  // acceder a form fields de manera rapida
   get f() {
     return this.registerForm.controls;
   }
@@ -38,5 +52,16 @@ export class RegisterComponent implements OnInit {
     }
 
     this.loading = true;
+    this.userService.register(this.registerForm.value).pipe(first()).subscribe(
+      data=>{
+        this.alertService.success('Register successful', true);
+        this.router.navigate(['/login']);
+      },
+      error=>{
+        this.alertService.error(error);
+        this.loading = false;
+      }
+    )
+    }
   }
 }
