@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Todo } from '../classes/todo';
+import { Todo } from '../models/todo';
 import { Subject, Observable } from 'rxjs';
 
 @Injectable({
